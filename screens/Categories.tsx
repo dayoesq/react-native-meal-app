@@ -16,7 +16,7 @@ function renderCategoryItem(itemData: ItemData) {
     );
 }
 
-export default function Category() {
+export default function Categories() {
     return (
         <FlatList
             data={CATEGORIES}

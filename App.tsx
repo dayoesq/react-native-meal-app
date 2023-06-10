@@ -1,12 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Category from './screens/Categories';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Categories from './screens/Categories';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
     return (
         <>
             <StatusBar style='light' />
-            <Category />
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen name='Categories' component={Categories} />
+                </Stack.Navigator>
+            </NavigationContainer>
         </>
     );
 }
