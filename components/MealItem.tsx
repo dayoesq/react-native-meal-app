@@ -1,4 +1,11 @@
-import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
+import {
+    View,
+    Text,
+    Image,
+    Pressable,
+    StyleSheet,
+    Platform
+} from 'react-native';
 
 type MealProps = {
     title: IMeal['title'];
@@ -22,10 +29,15 @@ export default function MealItem({
                     <Text style={styles.title}>{title}</Text>
                     <Image source={{ uri: imageUrl }} style={styles.image} />
                 </View>
-                <View>
-                    <Text>{duration}m</Text>
-                    <Text>{complexity.toUpperCase()}</Text>
-                    <Text>{affordability.toUpperCase()}</Text>
+                <View style={styles.details}>
+                    <Text style={styles.detailItem}>{`${duration}m   | `}</Text>
+                    <Text style={styles.detailItem}>
+                        {`${complexity.toUpperCase()}   | `}
+                    </Text>
+
+                    <Text style={styles.detailItem}>
+                        {affordability.toUpperCase()}
+                    </Text>
                 </View>
             </Pressable>
         </View>
@@ -36,8 +48,13 @@ const styles = StyleSheet.create({
     mealItem: {
         margin: 16,
         borderRadius: 8,
-        overflow: 'hidden',
-        backgroundColor: 'white'
+        overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
+        backgroundColor: 'white',
+        elevation: 4,
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 8
     },
     image: {
         width: '100%',
@@ -46,6 +63,17 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: 18
+        fontSize: 18,
+        padding: 8
+    },
+    details: {
+        margin: 8,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    detailItem: {
+        margin: 4,
+        fontWeight: '400'
     }
 });
