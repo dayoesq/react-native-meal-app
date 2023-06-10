@@ -1,4 +1,4 @@
-interface Meal {
+interface IMeal {
     id: string;
     categoryIds: string[];
     title: string;

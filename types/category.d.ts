@@ -1,4 +1,4 @@
-interface Category {
+interface ICategory {
     id: string;
     title: string;
     color: string;
