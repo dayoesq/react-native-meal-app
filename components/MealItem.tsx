@@ -1,3 +1,5 @@
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
     View,
     Text,
@@ -8,6 +10,7 @@ import {
 } from 'react-native';
 
 type MealProps = {
+    id: IMeal['id'];
     title: IMeal['title'];
     imageUrl: IMeal['imageUrl'];
     duration: IMeal['duration'];
@@ -16,15 +19,21 @@ type MealProps = {
 };
 
 export default function MealItem({
+    id,
     title,
     imageUrl,
     duration,
     complexity,
     affordability
 }: MealProps) {
+    const navigation =
+        useNavigation<NativeStackNavigationProp<any>>();
+    function selectMealItemHandler() {
+        navigation.navigate('MealDetails', { mealId: id });
+    }
     return (
         <View style={styles.mealItem}>
-            <Pressable>
+            <Pressable onPress={selectMealItemHandler}>
                 <View>
                     <Text style={styles.title}>{title}</Text>
                     <Image source={{ uri: imageUrl }} style={styles.image} />
