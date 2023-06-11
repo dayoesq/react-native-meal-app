@@ -1,16 +1,11 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 
-export default function MealDetails({ navigation }: { navigation: any }) {
-    function navigateHandler() {
-        navigation.navigate('MealDetails');
-    }
+export default function MealDetails({ route }: { route: any }) {
     return (
         <View>
-            <Pressable onPress={navigateHandler}>
-                <View>
-                    <Text>The Meals Details page</Text>
-                </View>
-            </Pressable>
+            <View>
+                <Text>The Meals Details page</Text>
+            </View>
         </View>
     );
 }
