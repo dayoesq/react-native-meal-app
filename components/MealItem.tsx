@@ -8,6 +8,7 @@ import {
     StyleSheet,
     Platform
 } from 'react-native';
+import { MealCard } from './MealCard';
 
 type MealProps = {
     id: IMeal['id'];
@@ -26,8 +27,7 @@ export default function MealItem({
     complexity,
     affordability
 }: MealProps) {
-    const navigation =
-        useNavigation<NativeStackNavigationProp<any>>();
+    const navigation = useNavigation<NativeStackNavigationProp<any>>();
     function selectMealItemHandler() {
         navigation.navigate('MealDetails', { mealId: id });
     }
@@ -38,16 +38,11 @@ export default function MealItem({
                     <Text style={styles.title}>{title}</Text>
                     <Image source={{ uri: imageUrl }} style={styles.image} />
                 </View>
-                <View style={styles.details}>
-                    <Text style={styles.detailItem}>{`${duration}m   | `}</Text>
-                    <Text style={styles.detailItem}>
-                        {`${complexity.toUpperCase()}   | `}
-                    </Text>
-
-                    <Text style={styles.detailItem}>
-                        {affordability.toUpperCase()}
-                    </Text>
-                </View>
+                <MealCard
+                    duration={duration}
+                    complexity={complexity}
+                    affordability={affordability}
+                />
             </Pressable>
         </View>
     );
@@ -74,15 +69,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
         padding: 8
-    },
-    details: {
-        margin: 8,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    detailItem: {
-        margin: 4,
-        fontWeight: '400'
     }
 });
