@@ -2,18 +2,15 @@ import { View, StyleSheet, FlatList } from 'react-native';
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 import MealItem from '../components/MealItem';
 import { useLayoutEffect } from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type ItemData = {
     item: IMeal;
 };
 
-export default function Meal({
-    route,
-    navigation
-}: {
-    route: any;
-    navigation: any;
-}) {
+type MealProps = NativeStackScreenProps<RootStackParamList, 'Meal'>;
+
+export default function Meal({ route, navigation }: MealProps) {
     // useRoute is an alternative here!
     const catId = route.params.categoryId;
     const displayMeals = MEALS.filter(item => {

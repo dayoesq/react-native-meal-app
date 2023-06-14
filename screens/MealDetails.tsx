@@ -1,10 +1,30 @@
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { MEALS } from '../data/dummy-data';
 import { MealCard } from '../components/MealCard';
+import { useLayoutEffect } from 'react';
+import { IconButton } from '../components/IconButton';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-export default function MealDetails({ route }: { route: any }) {
+type MealDetailsProps = NativeStackScreenProps<
+    RootStackParamList,
+    'MealDetails'
+>;
+
+export default function MealDetails({ route, navigation }: MealDetailsProps) {
     const mealId = route.params.mealId;
     const selectedMeal = MEALS.find(meal => meal.id === mealId);
+
+    function pressHandler() {
+        //console.log('pressed!!!');
+    }
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            headerRight: () => {
+                return <IconButton onPress={pressHandler} />;
+            }
+        });
+    }, [navigation, pressHandler]);
 
     return (
         <>

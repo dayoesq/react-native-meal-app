@@ -6,7 +6,7 @@ import Categories from './screens/Categories';
 import Meal from './screens/Meal';
 import MealDetails from './screens/MealDetails';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
     return (
