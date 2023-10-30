@@ -1,6 +1,6 @@
 ## RAECT NATIVE MEAL APP
 
-This app is for learning purposes only.
+This app is for demonstration purposes only.
 
 ### HOW TO USE
 
